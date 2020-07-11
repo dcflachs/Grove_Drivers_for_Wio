@@ -34,7 +34,7 @@ GroveMoistureSeesaw::GroveMoistureSeesaw(int pinsda, int pinscl)
     suli_i2c_init(i2c, pinsda, pinscl);
 
     this->p_dev = (Adafruit_seesaw *)malloc(sizeof(Adafruit_seesaw));
-    *this->p_dev = new Adafruit_seesaw(*this->i2c);
+    this->p_dev = new Adafruit_seesaw(*this->i2c);
 
     this->device_init = this->p_dev->begin(0x36);
 }
