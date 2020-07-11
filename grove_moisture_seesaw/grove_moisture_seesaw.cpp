@@ -34,7 +34,7 @@ GroveMoistureSeesaw::GroveMoistureSeesaw(int pinsda, int pinscl)
     suli_i2c_init(i2c, pinsda, pinscl);
 
     this->p_dev = (Adafruit_seesaw *)malloc(sizeof(Adafruit_seesaw));
-    *this->p_dev = new Adafruit_seesaw(this->i2c);
+    *this->p_dev = new Adafruit_seesaw(*this->i2c);
 
     this->device_init = this->p_dev->begin(0x36);
 }
@@ -44,13 +44,13 @@ bool GroveMoistureSeesaw::read_temperature(float *temperature)
 	if(this->device_init)
     	*temperature = this->p_dev->getTemp();
 
-    return this.device_init;
+    return this->device_init;
 }
 
 bool GroveMoistureSeesaw::read_moisture(uint16_t *moisture)
 {
 	if(this->device_init)
     	*moisture = this->p_dev->touchRead(0);
-    
-    return this.device_init;
+
+    return this->device_init;
 }
