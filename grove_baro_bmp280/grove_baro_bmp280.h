@@ -43,6 +43,7 @@
 
 
 #define BMP280_ADDRESS   (0x77<<1)
+#define BMP280_ALT_ADDRESS   (0x76<<1)
 
 #define BMP280_REG_DIG_T1    0x88
 #define BMP280_REG_DIG_T2    0x8A
@@ -72,6 +73,7 @@ class GroveBaroBMP280
 {
 public:
     GroveBaroBMP280(int pinsda, int pinscl);
+    GroveBaroBMP280(int pinsda, int pinscl, uint8_t addr);
 
     /**
      * Read a rough temperature value of the envirenment
@@ -101,6 +103,7 @@ public:
     bool read_altitude(float *altitude);
 private:
     I2C_T *i2c;
+    uint8_t i2c_addr = BMP280_ADDRESS;
     uint8_t cmdbuf[2];
     uint8_t databuf[3];
     const uint8_t OSS = 0;  //0: lowpower 1: standard 2: high 3: ultrahigh accuration

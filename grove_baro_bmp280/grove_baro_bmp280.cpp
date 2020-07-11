@@ -57,35 +57,40 @@ GroveBaroBMP280::GroveBaroBMP280(int pinsda, int pinscl)
 
 }
 
+GroveBaroBMP280::GroveBaroBMP280(int pinsda, int pinscl, uint8_t addr) : GroveBaroBMP280::GroveBaroBMP280{ pinsda, pinscl }
+{
+    i2c_addr = addr;
+}
+
 uint8_t GroveBaroBMP280::bmp280Read8(uint8_t reg)
 {
-    suli_i2c_read_reg(i2c, BMP280_ADDRESS, reg, databuf, 1);
+    suli_i2c_read_reg(i2c, i2c_addr, reg, databuf, 1);
     return databuf[0];
 
 }
 
 uint16_t GroveBaroBMP280::bmp280Read16(uint8_t reg)
 {
-    suli_i2c_read_reg(i2c, BMP280_ADDRESS, reg, databuf, 2);
+    suli_i2c_read_reg(i2c, i2c_addr, reg, databuf, 2);
     return (databuf[0] << 8) | databuf[1];
 
 }
 
 uint16_t GroveBaroBMP280::bmp280Read16LE(uint8_t reg)
 {
-    suli_i2c_read_reg(i2c, BMP280_ADDRESS, reg, databuf, 2);
+    suli_i2c_read_reg(i2c, i2c_addr, reg, databuf, 2);
     return (databuf[1] << 8) | databuf[0];
 }
 
 int16_t GroveBaroBMP280::bmp280ReadS16(uint8_t reg)
 {
-    suli_i2c_read_reg(i2c, BMP280_ADDRESS, reg, databuf, 2);
+    suli_i2c_read_reg(i2c, i2c_addr, reg, databuf, 2);
     return (int16_t)((databuf[0] << 8) | databuf[1]);
 }
 
 int16_t GroveBaroBMP280::bmp280ReadS16LE(uint8_t reg)
 {
-    suli_i2c_read_reg(i2c, BMP280_ADDRESS, reg, databuf, 2);
+    suli_i2c_read_reg(i2c, i2c_addr, reg, databuf, 2);
     return (int16_t)((databuf[1] << 8) | databuf[0]);
 }
 
@@ -93,7 +98,7 @@ uint32_t GroveBaroBMP280::bmp280Read24(uint8_t reg)
 {
     uint32_t data;
 
-    suli_i2c_read_reg(i2c, BMP280_ADDRESS, reg, databuf, 3);
+    suli_i2c_read_reg(i2c, i2c_addr, reg, databuf, 3);
 
     data = databuf[0];
     data <<= 8;
@@ -108,7 +113,7 @@ void GroveBaroBMP280::writeRegister(uint8_t reg, uint8_t val)
 {
     cmdbuf[0] = reg;
     cmdbuf[1] = val;
-    suli_i2c_write(i2c, BMP280_ADDRESS, cmdbuf, 2);
+    suli_i2c_write(i2c, i2c_addr, cmdbuf, 2);
 }
 
 
