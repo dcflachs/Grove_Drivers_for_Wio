@@ -1,0 +1,3 @@
+[submodule "seesaw"]
+	path = seesaw
+	url = https://github.com/adafruit/Adafruit_Seesaw.git
