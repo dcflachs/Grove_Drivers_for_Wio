@@ -38,6 +38,19 @@
 //ADDED_AT          "2020-10-25"
 //AUTHOR            "dcflachs"
 
-class GroveMoistureCapacitive : public GroveMoisture;
+class GroveMoistureCapacitive : public GroveMoisture
+{
+public:
+    GroveMoistureCapacitive(int pin);
+
+    /**
+     *
+     *
+     * @param moisture - analog value, range: 0~1023
+     *
+     * @return bool
+     */
+    bool read_moisture(uint16_t *moisture);
+}
 
 #endif
