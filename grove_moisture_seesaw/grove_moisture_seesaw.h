@@ -65,6 +65,8 @@ public:
      */
     bool read_moisture(uint16_t *moisture);
 
+    bool read_version(uint32_t *version);
+
 private:
     I2C_T *i2c;
     Adafruit_seesaw * p_dev;

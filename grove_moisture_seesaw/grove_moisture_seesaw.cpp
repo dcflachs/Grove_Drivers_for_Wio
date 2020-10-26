@@ -54,3 +54,11 @@ bool GroveMoistureSeesaw::read_moisture(uint16_t *moisture)
 
     return this->device_init;
 }
+
+bool GroveMoistureSeesaw::read_version(uint32_t *version)
+{
+    if(this->device_init)
+    *version = this->p_dev->getVersion();
+
+    return this->device_init;
+}
