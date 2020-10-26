@@ -27,7 +27,7 @@
 #ifndef __GROVE_MOISTURE_CAPACITIVE_CLASS_H__
 #define __GROVE_MOISTURE_CAPACITIVE_CLASS_H__
 
-#include "grove_moisture.h"
+#include "grove_moisture_class.h"
 
 //GROVE_NAME        "Grove-Moisture-Capacitive"
 //SKU               101020614
